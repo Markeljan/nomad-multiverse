@@ -24,7 +24,7 @@ const MINTABLE_ITEMS: Record<string, MintableItem> = {
     name: "Shapecraft Key",
     description: "Appears to those who are worthy",
     image: key,
-    contractAddress: "0x16980543e20c51F71A7450b0996bf97F06B1Cb43", // Add your key contract address here
+    contractAddress: "0x16980543e20c51F71A7450b0996bf97F06B1Cb43",
   },
 };
 

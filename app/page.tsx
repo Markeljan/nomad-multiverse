@@ -1,7 +1,7 @@
 "use client";
 import { useSignerStatus } from "@account-kit/react";
 import { WelcomeDialog } from "@/components/home/WelcomeDialog";
-import { MintSection } from "@/components/home/MintSection";
+import { TabSection } from "@/components/home/TabSection";
 
 export default function Home() {
   const { isAuthenticating, isInitializing, isConnected } = useSignerStatus();
@@ -12,7 +12,7 @@ export default function Home() {
       {isLoading ? (
         <>Loading...</>
       ) : isConnected ? (
-        <MintSection />
+        <TabSection />
       ) : (
         <WelcomeDialog />
       )}

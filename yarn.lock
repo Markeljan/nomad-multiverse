@@ -3461,6 +3461,26 @@ alchemy-sdk@^3.0.0:
     sturdy-websocket "^0.2.1"
     websocket "^1.0.34"
 
+alchemy-sdk@^3.4.8:
+  version "3.4.8"
+  resolved "https://registry.yarnpkg.com/alchemy-sdk/-/alchemy-sdk-3.4.8.tgz#ef84a3efe00b5e5924da79ef77c54cdb943e8772"
+  integrity sha512-JVyXuARxys8cI+Gu9KdvKr9TWDbbyvUY7cV2QkX7v4skCZUS01n5OqD5tA8iy5cLzU6XEN+MM6f9h4bDDFDmqA==
+  dependencies:
+    "@ethersproject/abi" "^5.7.0"
+    "@ethersproject/abstract-provider" "^5.7.0"
+    "@ethersproject/bignumber" "^5.7.0"
+    "@ethersproject/bytes" "^5.7.0"
+    "@ethersproject/contracts" "^5.7.0"
+    "@ethersproject/hash" "^5.7.0"
+    "@ethersproject/networks" "^5.7.0"
+    "@ethersproject/providers" "^5.7.0"
+    "@ethersproject/units" "^5.7.0"
+    "@ethersproject/wallet" "^5.7.0"
+    "@ethersproject/web" "^5.7.0"
+    axios "^1.7.4"
+    sturdy-websocket "^0.2.1"
+    websocket "^1.0.34"
+
 anser@^1.4.9:
   version "1.4.10"
   resolved "https://registry.npmjs.org/anser/-/anser-1.4.10.tgz"
@@ -3720,6 +3740,15 @@ axios@^1.6.5:
   version "1.7.2"
   resolved "https://registry.npmjs.org/axios/-/axios-1.7.2.tgz"
   integrity sha512-2A8QhOMrbomlDuiLeK9XibIBzuHeRcqqNOHp0Cyp5EoJ1IFDh+XZH3A6BkXtv0K4gFGCI0Y4BM7B1wOEi0Rmgw==
+  dependencies:
+    follow-redirects "^1.15.6"
+    form-data "^4.0.0"
+    proxy-from-env "^1.1.0"
+
+axios@^1.7.4:
+  version "1.7.7"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-1.7.7.tgz#2f554296f9892a72ac8d8e4c5b79c14a91d0a47f"
+  integrity sha512-S4kL7XrjgBmvdGut0sN3yJxqYzrDOnivkBiN0OFs6hLiUam3UPvswUo0kqGyhqUZGEOytHyumEdXsAkgCOUf3Q==
   dependencies:
     follow-redirects "^1.15.6"
     form-data "^4.0.0"
