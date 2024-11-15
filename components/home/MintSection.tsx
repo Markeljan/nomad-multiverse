@@ -1,20 +1,44 @@
 "use client";
 import { useSmartAccount } from "@/contexts/SmartAccountContext";
 import { useState } from "react";
-import Image from "next/image";
 import sword from "./images/sword.png";
-import { encodeFunctionData, parseAbi, parseUnits, verifyMessage } from "viem";
+import key from "./images/key.gif";
+import { encodeFunctionData, parseAbi } from "viem";
+import MintCard from "./MintCard";
+
+export type MintableItem = {
+  name: string;
+  description: string;
+  image: any;
+  contractAddress: `0x${string}`;
+};
+
+const MINTABLE_ITEMS: Record<string, MintableItem> = {
+  sword: {
+    name: "Shapecraft Sword",
+    description: "A multiversal blade",
+    image: sword,
+    contractAddress: "0x2aEa2c5AB39C7146378d4852f9aF2eACd462F57a",
+  },
+  key: {
+    name: "Shapecraft Key",
+    description: "Appears to those who are worthy",
+    image: key,
+    contractAddress: "0x16980543e20c51F71A7450b0996bf97F06B1Cb43", // Add your key contract address here
+  },
+};
 
 export function MintSection() {
   const { address, client } = useSmartAccount();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<string | null>(null);
 
-  const handleMint = async () => {
+  const handleMint = async (itemType: keyof typeof MINTABLE_ITEMS) => {
     if (!client || !address) return;
 
-    setIsLoading(true);
+    const item = MINTABLE_ITEMS[itemType];
+    setIsLoading(itemType);
+
     try {
-      const contractAddress = "0xc2485e38954EA3e3Ec0f3BB3B8fCD468582Fb9b4";
       const abi = parseAbi(["function mint(address)"]);
       const mintData = encodeFunctionData({
         abi: abi,
@@ -24,47 +48,31 @@ export function MintSection() {
 
       const userOp = await client.sendUserOperation({
         uo: {
-          target: contractAddress,
+          target: item.contractAddress,
           data: mintData,
         },
       });
 
       const receipt = await client.waitForUserOperationTransaction(userOp);
-      alert("Successfully minted your sword!");
+      alert(`Successfully minted your ${item.name}!`);
     } catch (error) {
-      console.error("Failed to mint:", error);
-      alert("Failed to mint sword");
+      console.error(`Failed to mint ${item.name}:`, error);
+      alert(`Failed to mint ${item.name}`);
     } finally {
-      setIsLoading(false);
+      setIsLoading(null);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-8 bg-white p-8 rounded-lg shadow-md">
-      <div className="flex flex-col items-center space-y-6">
-        <Image
-          src={sword}
-          alt="Legendary Sword"
-          className="w-48 h-48 object-contain"
-          width={192}
-          height={192}
+    <div className="max-w-4xl mx-auto mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {Object.entries(MINTABLE_ITEMS).map(([itemType, item]) => (
+        <MintCard
+          key={itemType}
+          item={item}
+          isLoading={isLoading === itemType}
+          onMint={() => handleMint(itemType as keyof typeof MINTABLE_ITEMS)}
         />
-
-        <h2 className="text-3xl font-bold text-gray-800">Legendary Sword</h2>
-
-        <p className="text-gray-600 text-center">A powerful sword</p>
-
-        <button
-          onClick={handleMint}
-          disabled={isLoading}
-          className="w-full max-w-xs bg-blue-600 text-white py-3 px-6 rounded-md
-            hover:bg-blue-700 transition-colors duration-200
-            flex items-center justify-center
-            disabled:bg-blue-300"
-        >
-          {isLoading ? "Minting..." : "Mint"}
-        </button>
-      </div>
+      ))}
     </div>
   );
 }
