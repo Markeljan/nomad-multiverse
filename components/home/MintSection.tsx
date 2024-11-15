@@ -1,7 +1,7 @@
 "use client";
 import { useSmartAccount } from "@/contexts/SmartAccountContext";
 import { useState } from "react";
-import sword from "./images/sword.png";
+import eye from "./images/eye.png";
 import key from "./images/key.gif";
 import { encodeFunctionData, parseAbi } from "viem";
 import MintCard from "./MintCard";
@@ -15,14 +15,14 @@ export type MintableItem = {
 
 const MINTABLE_ITEMS: Record<string, MintableItem> = {
   sword: {
-    name: "Shapecraft Sword",
-    description: "A multiversal blade",
-    image: sword,
-    contractAddress: "0x2aEa2c5AB39C7146378d4852f9aF2eACd462F57a",
+    name: "Shapecraft Eye",
+    description: "Multiversal secrets within its stare",
+    image: eye,
+    contractAddress: "0xAA394da7d62E502a7E3dA7e11d21A74c277143d5",
   },
   key: {
     name: "Shapecraft Key",
-    description: "Appears to those who are worthy",
+    description: "Key to worlds, shaper of destinies",
     image: key,
     contractAddress: "0x16980543e20c51F71A7450b0996bf97F06B1Cb43",
   },
